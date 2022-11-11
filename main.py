@@ -12,6 +12,10 @@ if sys.stdin.isatty():
     win32gui.ShowWindow(hide, win32con.SW_HIDE)
 
 
+def exitProg():
+    sys.exit()
+
+
 def splash():
     splash_win = Tk()
     splash_win.title('uCPE')
@@ -29,6 +33,7 @@ def splash():
     greeting = tkinter.Label(text='Author: Mikey Marcotte')
     greeting.pack()
     splash_win.after(3000, lambda: splash_win.destroy())
+    splash_win.protocol("WM_DELETE_WINDOW", exitProg)
     splash_win.mainloop()
 
 
@@ -63,6 +68,7 @@ def main():
            padx=0,
            pady=0,
            command=printValue2).pack()
+    main.protocol("WM_DELETE_WINDOW", exitProg)
     main.mainloop()
 
 
@@ -98,6 +104,7 @@ def tryAgain():
            pady=0,
            command=printValue2).pack()
     ta.bind('<Return>', printValue)
+    ta.protocol("WM_DELETE_WINDOW", exitProg)
     ta.mainloop()
 
 
@@ -140,6 +147,7 @@ def popUp():
            padx=0,
            pady=0,
            command=endProg).place(x=360, y=470)
+    win.protocol("WM_DELETE_WINDOW", exitProg)
     win.mainloop()
 
 
